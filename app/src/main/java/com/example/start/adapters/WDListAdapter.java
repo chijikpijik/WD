@@ -10,13 +10,14 @@ import android.widget.TextView;
 import com.example.start.R;
 import com.example.start.net.ImageAssigner;
 import com.example.start.utils.Utils;
-import com.example.start.view.WDItemSmallView;
+import com.example.start.view.WDItemSmall;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class WDListAdapter extends BaseAdapter {
 
-    private List<WDItemSmallView> mItems;
+    private List<WDItemSmall> mItems;
     private Context mContext;
 
     public WDListAdapter(Context ctx, List items) {
@@ -30,7 +31,7 @@ public class WDListAdapter extends BaseAdapter {
     }
 
     @Override
-    public WDItemSmallView getItem(int position) {
+    public WDItemSmall getItem(int position) {
         return mItems.get(position);
     }
 
@@ -45,14 +46,10 @@ public class WDListAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_small, parent, false);
         ImageAssigner loader;
         ((TextView)convertView.findViewById(R.id.itemTitle)).setText(getItem(position).getTitle());
-        ((TextView)convertView.findViewById(R.id.itemRate)).setText(
-                String.format("Pos in adapter: %s, Pos from Item: %s", position, getItem(position).getPosition()));
-        loader = new ImageAssigner(mContext,
-                getItem(position).getImageUri(),
-                (ImageView)convertView.findViewById(R.id.itemImage),
-                getItem(position).getPosition());
-        loader.assign();
-        Utils.log("Convert view: " + getItem(position).getPosition());
+//        ((TextView)convertView.findViewById(R.id.itemRate)).setText(
+//                String.format("Pos in adapter: %s, Pos from Item: %s", position, getItem(position).getPosition()));
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.itemImage);
+        Picasso.with(mContext).load(getItem(position).getImageUri()).into(imageView);
         return convertView;
     }
 }

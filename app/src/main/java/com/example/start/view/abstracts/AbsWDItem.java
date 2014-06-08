@@ -8,7 +8,7 @@ public abstract class AbsWDItem {
 
     private String mTitle;
     private String mRate;
-    private URI mImageUri;
+    private Uri mImageUri;
     private String mDataType;
 
     public AbsWDItem() {
@@ -26,7 +26,7 @@ public abstract class AbsWDItem {
         mRate = rate;
     }
 
-    public void setImageUri(URI uri) {
+    public void setImageUri(Uri uri) {
         mImageUri = uri;
     }
 
@@ -38,7 +38,7 @@ public abstract class AbsWDItem {
        return mRate;
     }
 
-    public URI getImageUri() {
+    public Uri getImageUri() {
         return mImageUri;
     }
 }

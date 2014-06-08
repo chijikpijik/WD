@@ -4,11 +4,11 @@ import android.content.Context;
 import com.example.start.utils.Utils;
 import com.example.start.view.abstracts.AbsWDItem;
 
-public class WDItemSmallView extends AbsWDItem {
+public class WDItemSmall extends AbsWDItem {
 
     private int mPosition;
 
-    public WDItemSmallView(int position, Context context) {
+    public WDItemSmall(int position, Context context) {
         mPosition = position;
         Utils.log(String.format("ITEM INIT pos: %s", position));
     }

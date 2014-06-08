@@ -1,5 +1,6 @@
 package com.example.start.data.elements;
 
+import android.net.Uri;
 import com.example.start.view.abstracts.AbsWDItem;
 import com.example.start.data.abstracts.AbsElement;
 import com.example.start.data.objects.Attribute;
@@ -33,7 +34,7 @@ public class NewsImageElement extends AbsElement {
         } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-        item.setImageUri(new URI(getAttributes().getValue(ATTR_SRC)));
+        item.setImageUri(Uri.parse(getAttributes().getValue(ATTR_SRC)));
         item.setTitle(getAttributes().getValue(ATTR_ALT));
     }
 }
