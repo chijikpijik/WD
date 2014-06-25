@@ -1,12 +1,18 @@
 package com.example.start.data.abstracts;
 
-import com.example.start.view.abstracts.AbsWDItem;
+import com.example.start.object.abstracts.AbsWDItem;
 import org.xml.sax.Attributes;
 
 import java.net.URISyntaxException;
 import java.util.List;
 
 public interface IElement {
+
+    public enum ElementType {
+        BLOCK,
+        ELEMENT
+    }
+
      /**
      * @return tag name
      */
@@ -22,5 +28,11 @@ public interface IElement {
 
     public void setAttributes(Attributes attributes);
 
-    public void fillData(AbsWDItem item) throws URISyntaxException;
+    public void provideDataTo(AbsWDItem item) throws URISyntaxException;
+
+    public ElementType getElementType();
+
+    public boolean check(String tag, Attributes attributes);
+
+
  }

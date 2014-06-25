@@ -1,6 +1,6 @@
 package com.example.start.data.elements;
 
-import com.example.start.view.abstracts.AbsWDItem;
+import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.data.abstracts.IElement;
 import org.xml.sax.Attributes;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public class NewsBodyElement implements IElement {
     @Override
     public String getTag() {
-        return null;
+        return "div";
     }
 
     @Override
@@ -28,7 +28,7 @@ public class NewsBodyElement implements IElement {
     }
 
     @Override
-    public void fillData(AbsWDItem item) {
+    public void provideDataTo(AbsWDItem item) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }

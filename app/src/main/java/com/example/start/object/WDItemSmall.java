@@ -1,8 +1,8 @@
-package com.example.start.view;
+package com.example.start.object;
 
 import android.content.Context;
 import com.example.start.utils.Utils;
-import com.example.start.view.abstracts.AbsWDItem;
+import com.example.start.object.abstracts.AbsWDItem;
 
 public class WDItemSmall extends AbsWDItem {
 

@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.start.R;
 import com.example.start.net.ImageAssigner;
-import com.example.start.utils.Utils;
-import com.example.start.view.WDItemSmall;
+import com.example.start.object.WDItemSmall;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

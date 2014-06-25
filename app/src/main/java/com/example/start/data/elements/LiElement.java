@@ -1,6 +1,6 @@
 package com.example.start.data.elements;
 
-import com.example.start.view.abstracts.AbsWDItem;
+import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.data.abstracts.AbsElement;
 import com.example.start.data.objects.Attribute;
 
@@ -25,6 +25,6 @@ public class LiElement extends AbsElement {
     }
 
     @Override
-    public void fillData(AbsWDItem item) throws URISyntaxException {
+    public void provideDataTo(AbsWDItem item) throws URISyntaxException {
         item.setDataType(getAttributes().getValue(ATTR_DATA_TYPE));
     }}

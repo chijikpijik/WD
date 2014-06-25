@@ -1,8 +1,6 @@
-package com.example.start.view.abstracts;
+package com.example.start.object.abstracts;
 
 import android.net.Uri;
-
-import java.net.URI;
 
 public abstract class AbsWDItem {
 

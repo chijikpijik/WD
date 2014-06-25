@@ -1,6 +1,5 @@
 package com.example.start.net.converter;
 
-import com.example.start.data.abstracts.IBlock;
 import com.example.start.saxhadlers.WDHandler;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
@@ -14,6 +13,7 @@ import retrofit.mime.TypedOutput;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +42,7 @@ public class WDConverter {
         } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-        return ((WDHandler)liHandler).getBlockList();
+        return new ArrayList();
+//        return ((WDHandler)liHandler).getBlockList();
     }
 }

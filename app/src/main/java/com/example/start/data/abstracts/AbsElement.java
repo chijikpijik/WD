@@ -30,4 +30,11 @@ public abstract class AbsElement implements IElement {
     public void setAttributes(Attributes attributes) {
         mAttributes = attributes;
     }
+
+
+
+    @Override
+    public ElementType getElementType() {
+        return ElementType.ELEMENT;
+    }
 }
