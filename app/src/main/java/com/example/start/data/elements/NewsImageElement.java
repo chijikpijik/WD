@@ -25,7 +25,7 @@ public class NewsImageElement extends AbsElement {
     }
 
     @Override
-    public void provideDataTo(AbsWDItem item) throws URISyntaxException {
+    public void provideDataTo(AbsWDItem item) {
         String title = null;
         try {
             title = new String(getAttributes().getValue(ATTR_ALT).getBytes());

@@ -13,7 +13,6 @@ import com.example.start.object.WDItemSmall;
 import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.R;
 import com.example.start.adapters.WDListAdapter;
-import com.example.start.data.abstracts.IBlock;
 import retrofit.mime.TypedInput;
 
 import java.io.File;
@@ -30,8 +29,6 @@ public class FaceFragment extends Fragment {
 
     private ListAdapter mAdapter;
 
-    private List<IBlock> mBlocks;
-
     public static FaceFragment newInstance() {
         return new FaceFragment();
     }
@@ -43,7 +40,7 @@ public class FaceFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startDownload();
-                v.setVisibility(View.GONE);
+//                v.setVisibility(View.GONE);
             }
         });
         mAdapter = new WDListAdapter(getActivity(), mItems);
@@ -86,18 +83,18 @@ public class FaceFragment extends Fragment {
 //        );
     }
 
-    public void fillItemsData(List<IBlock> blocks) {
-        Iterator<IBlock> i = blocks.iterator();
-        Integer pos = 0;
-        for (; i.hasNext(); ) {
-            AbsWDItem item = new WDItemSmall(pos, getActivity());
-            IBlock block = i.next();
-            block.fillItem(item);
-            mItems.add((WDItemSmall) item);
-            pos++;
-        }
-        updateList();
-    }
+//    public void fillItemsData(List<IBlock> blocks) {
+//        Iterator<IBlock> i = blocks.iterator();
+//        Integer pos = 0;
+//        for (; i.hasNext(); ) {
+//            AbsWDItem item = new WDItemSmall(pos, getActivity());
+//            IBlock block = i.next();
+//            block.fillItem(item);
+//            mItems.add((WDItemSmall) item);
+//            pos++;
+//        }
+//        updateList();
+//    }
 
     private void updateList() {
         ((WDListAdapter) mAdapter).notifyDataSetChanged();

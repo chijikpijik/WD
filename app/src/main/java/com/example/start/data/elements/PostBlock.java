@@ -21,7 +21,7 @@ public class PostBlock extends AbsBlock {
     }
 
     @Override
-    public void provideDataTo(AbsWDItem item) throws URISyntaxException {
+    public void provideDataTo(AbsWDItem item) {
 
     }
 

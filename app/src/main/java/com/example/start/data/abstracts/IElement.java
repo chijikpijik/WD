@@ -28,7 +28,7 @@ public interface IElement {
 
     public void setAttributes(Attributes attributes);
 
-    public void provideDataTo(AbsWDItem item) throws URISyntaxException;
+    public void provideDataTo(AbsWDItem item);
 
     public ElementType getElementType();
 

@@ -25,6 +25,6 @@ public class LiElement extends AbsElement {
     }
 
     @Override
-    public void provideDataTo(AbsWDItem item) throws URISyntaxException {
+    public void provideDataTo(AbsWDItem item) {
         item.setDataType(getAttributes().getValue(ATTR_DATA_TYPE));
     }}

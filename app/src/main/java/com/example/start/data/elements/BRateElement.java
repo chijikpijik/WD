@@ -21,7 +21,7 @@ public class BRateElement extends AbsElement {
     }
 
     @Override
-    public void provideDataTo(AbsWDItem item) throws URISyntaxException {
+    public void provideDataTo(AbsWDItem item) {
 
     }
 }

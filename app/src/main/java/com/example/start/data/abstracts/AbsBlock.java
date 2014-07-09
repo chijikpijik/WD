@@ -3,6 +3,7 @@ package com.example.start.data.abstracts;
 import com.example.start.data.abstracts.AbsElement;
 import com.example.start.data.abstracts.IElement;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public abstract class AbsBlock extends AbsElement{
     Iterator<IElement> i;
 
     protected AbsBlock() {
+        mElements = new ArrayList<IElement>();
         fillElements();
         i = mElements.iterator();
     }

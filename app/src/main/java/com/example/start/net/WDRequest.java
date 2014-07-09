@@ -1,6 +1,5 @@
 package com.example.start.net;
 
-import com.example.start.data.abstracts.IBlock;
 import com.example.start.saxhadlers.WDHandler;
 import org.xml.sax.*;
 import org.xml.sax.helpers.XMLReaderFactory;
