@@ -44,7 +44,7 @@ public class WDHandler extends DefaultHandler {
             }
             mElement = mBlocks.peekLast().nextElement();
             while (mElement == null) {
-                mElement = mBlocks.removeLast();
+                mBlocks.removeLast();
                 if (mBlocks.size() == 0) {
                     break;
                 }
