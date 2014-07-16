@@ -17,14 +17,7 @@ public class NewsTextBlock extends AbsBlock {
     public void initBlock() {
         final ATagElement aTagElement = new ATagElement();
         mElements.add(aTagElement);
-        mElements.add()
         addAppropriateAttribute(new Attribute(ATTR_CLASS, ATTR_CLASS_VALUE));
-        addOnRepeatElementCondition(new OnRepeatElementCondition() {
-            @Override
-            public boolean repeatPreviousElement() {
-                return !aTagElement.isToogle();
-            }
-        });
     }
 
     @Override

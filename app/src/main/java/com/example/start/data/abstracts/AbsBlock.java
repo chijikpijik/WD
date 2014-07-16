@@ -10,7 +10,6 @@ import java.util.ListIterator;
 public abstract class AbsBlock extends AbsElement{
 
     protected List<IElement> mElements;
-    private OnRepeatElementCondition mOnRepeatElementCondition;
     ListIterator<IElement> i;
 
     protected AbsBlock() {
@@ -19,15 +18,8 @@ public abstract class AbsBlock extends AbsElement{
         i = mElements.listIterator();
     }
 
-    public void addOnRepeatElementCondition(OnRepeatElementCondition condition) {
-        mOnRepeatElementCondition = condition;
-    }
-
     public IElement nextElement() {
-        if (mOnRepeatElementCondition != null && mOnRepeatElementCondition.repeatPreviousElement())
-            return i.hasNext() ? mElements.get(i.nextIndex() - 1) : mElements.get(mElements.size() - 1);
-        else
-            return i.hasNext() ? i.next() : null;
+        return i.hasNext() ? i.next() : null;
     }
 
     @Override
@@ -36,11 +28,5 @@ public abstract class AbsBlock extends AbsElement{
     }
 
     public abstract void initBlock();
-
-    public static interface OnRepeatElementCondition {
-
-        public boolean repeatPreviousElement();
-
-    }
 
 }
