@@ -67,7 +67,7 @@ public class FaceFragment extends Fragment {
             WDConverter.fromBody(new TypedInput() {
                 @Override
                 public String mimeType() {
-                    return "html";
+                    return "xml";
                 }
 
                 @Override
@@ -77,7 +77,7 @@ public class FaceFragment extends Fragment {
 
                 @Override
                 public InputStream in() throws IOException {
-                    return new FileInputStream(new File("/sdcard/", "wdmain.html"));
+                    return new FileInputStream(new File("/sdcard/", "test.html"));
                 }
         });
 //        );
