@@ -1,34 +1,20 @@
 package com.example.start.data.elements;
 
-import com.example.start.view.abstracts.AbsWDItem;
-import com.example.start.data.abstracts.IElement;
-import org.xml.sax.Attributes;
+import com.example.start.data.abstracts.AbsElement;
+import com.example.start.object.abstracts.AbsWDItem;
 
-import java.util.List;
+public class NewsRateElement extends AbsElement {
 
-public class NewsRateElement implements IElement{
+    private static final String ATTR_TITLE = "title";
+
     @Override
     public String getTag() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return "b";  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
-    public List getAttributesForMatch() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 
     @Override
-    public Attributes getAttributes() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void setAttributes(Attributes attributes) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void fillData(AbsWDItem item) {
+    public void provideDataTo(AbsWDItem item) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 }

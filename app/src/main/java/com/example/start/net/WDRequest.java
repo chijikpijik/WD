@@ -1,6 +1,5 @@
 package com.example.start.net;
 
-import com.example.start.data.abstracts.IBlock;
 import com.example.start.saxhadlers.WDHandler;
 import org.xml.sax.*;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -11,7 +10,7 @@ import java.util.*;
 
 public class WDRequest extends Request {
 
-    private List<IBlock> mBlocks;
+//    private List<IBlock> mBlocks;
 
     @Override
     public URI getUri() throws Exception {
@@ -35,7 +34,7 @@ public class WDRequest extends Request {
 
         ContentHandler liHandler = new WDHandler();
         xmlReader.setContentHandler(liHandler);
-        mBlocks = ((WDHandler)liHandler).getBlockList();
+//        mBlocks = ((WDHandler)liHandler).getBlockList();
         try {
             xmlReader.parse(new InputSource(reader));
         } catch (Exception e) {
@@ -43,8 +42,8 @@ public class WDRequest extends Request {
         }
     }
 
-    public List<IBlock> getBlocks() {
-        return mBlocks;
-    }
+//    public List<IBlock> getBlocks() {
+//        return mBlocks;
+//    }
 
 }

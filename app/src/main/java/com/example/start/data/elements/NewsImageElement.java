@@ -1,12 +1,10 @@
 package com.example.start.data.elements;
 
 import android.net.Uri;
-import com.example.start.view.abstracts.AbsWDItem;
+import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.data.abstracts.AbsElement;
 import com.example.start.data.objects.Attribute;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URI;
 import java.net.URISyntaxException;
 
 public class NewsImageElement extends AbsElement {
@@ -27,7 +25,7 @@ public class NewsImageElement extends AbsElement {
     }
 
     @Override
-    public void fillData(AbsWDItem item) throws URISyntaxException {
+    public void provideDataTo(AbsWDItem item) {
         String title = null;
         try {
             title = new String(getAttributes().getValue(ATTR_ALT).getBytes());
