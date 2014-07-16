@@ -1,10 +1,10 @@
-package com.example.start.data.elements;
+package com.example.start.data.elements.blocks;
 
 import com.example.start.data.abstracts.AbsBlock;
+import com.example.start.data.elements.blocks.NewsImageBlock;
+import com.example.start.data.elements.blocks.NewsRateBlock;
 import com.example.start.data.objects.Attribute;
 import com.example.start.object.abstracts.AbsWDItem;
-
-import java.net.URISyntaxException;
 
 /**
  * Created by akarpov on 6/14/14.
@@ -26,7 +26,7 @@ public class PostBlock extends AbsBlock {
     }
 
     @Override
-    public void fillElements() {
+    public void initBlock() {
         addAppropriateAttribute(new Attribute(ATTR_DATA_ID, ""));
         addAppropriateAttribute(new Attribute(ATTR_DATA_TYPE, ""));
         addAppropriateAttribute(new Attribute(ATTR_DATA_LINK, ""));

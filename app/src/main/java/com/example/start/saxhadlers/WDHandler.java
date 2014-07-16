@@ -2,7 +2,7 @@ package com.example.start.saxhadlers;
 
 import com.example.start.data.abstracts.AbsBlock;
 import com.example.start.data.abstracts.IElement;
-import com.example.start.data.elements.PostBlock;
+import com.example.start.data.elements.blocks.PostBlock;
 import com.example.start.object.WDItemSmall;
 import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.utils.Utils;

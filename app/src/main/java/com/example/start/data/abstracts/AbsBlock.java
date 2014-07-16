@@ -1,11 +1,8 @@
 package com.example.start.data.abstracts;
 
-import com.example.start.data.abstracts.AbsElement;
-import com.example.start.data.abstracts.IElement;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by akarpov on 6/14/14.
@@ -13,16 +10,24 @@ import java.util.List;
 public abstract class AbsBlock extends AbsElement{
 
     protected List<IElement> mElements;
-    Iterator<IElement> i;
+    private OnRepeatElementCondition mOnRepeatElementCondition;
+    ListIterator<IElement> i;
 
     protected AbsBlock() {
         mElements = new ArrayList<IElement>();
-        fillElements();
-        i = mElements.iterator();
+        initBlock();
+        i = mElements.listIterator();
+    }
+
+    public void addOnRepeatElementCondition(OnRepeatElementCondition condition) {
+        mOnRepeatElementCondition = condition;
     }
 
     public IElement nextElement() {
-        return i.hasNext() ? i.next() : null;
+        if (mOnRepeatElementCondition != null && mOnRepeatElementCondition.repeatPreviousElement())
+            return i.hasNext() ? mElements.get(i.nextIndex() - 1) : mElements.get(mElements.size() - 1);
+        else
+            return i.hasNext() ? i.next() : null;
     }
 
     @Override
@@ -30,6 +35,12 @@ public abstract class AbsBlock extends AbsElement{
         return ElementType.BLOCK;
     }
 
-    public abstract void fillElements();
+    public abstract void initBlock();
+
+    public static interface OnRepeatElementCondition {
+
+        public boolean repeatPreviousElement();
+
+    }
 
 }
