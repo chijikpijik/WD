@@ -7,9 +7,11 @@ import com.example.start.object.WDItemSmall;
 import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.utils.Utils;
 import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.io.IOException;
 import java.util.*;
 
 public class WDHandler extends DefaultHandler {
@@ -18,6 +20,8 @@ public class WDHandler extends DefaultHandler {
     List<AbsWDItem> mPosts;
     LinkedList<AbsBlock> mBlocks;
     AbsWDItem mPost;
+    StringBuilder mTagContent;
+    boolean mObtainText;
 
     public WDHandler() {
         super();
@@ -25,10 +29,15 @@ public class WDHandler extends DefaultHandler {
         mBlocks = new LinkedList<AbsBlock>();
         mPost = new WDItemSmall();
         setNextElement(new PostBlock());
+        mObtainText = false;
     }
 
     private AbsBlock getCurrentBlock() {
         return mBlocks.size() > 0 ? mBlocks.getFirst() : null;
+    }
+
+    private String getTagContent() {
+        return mTagContent.toString();
     }
 
     private IElement getNextElementInBlock() {
@@ -38,7 +47,7 @@ public class WDHandler extends DefaultHandler {
                 mBlocks.removeFirst().terminateBlock();
                 element = mBlocks.peekFirst().nextElement();
             }
-            Utils.log(String.format("Next Element is: %s", element != null ? element.getTag() : "null"));
+//            Utils.log(String.format("Next Element is: %s", element != null ? element.getTag() : "null"));
             return element;
         }
         return null;
@@ -58,17 +67,34 @@ public class WDHandler extends DefaultHandler {
         return true;
     }
 
+
+    @Override
+    public void characters(char[] ch, int start, int length) throws SAXException {
+        if (mObtainText) {
+            mTagContent = new StringBuilder();
+//            for (char aCh : ch) {
+//                if (!Character.isISOControl(aCh)) {
+            mTagContent.append(ch, start, length);
+//                }
+//            }
+        }
+    }
+
     @Override
     public void startElement (String uri, String localName, String qName, Attributes attributes) throws SAXException
     {
         if (mElement.check(localName, attributes)) {
-            mElement.provideDataTo(mPost);//TODO: Do not forget to implement
+            mElement.setAttributes(attributes);
+            if (mElement.isTagContentRelated()) {
+                mObtainText = true;
+            } else {
+                mElement.provideDataTo(mPost);//TODO: Do not forget to implement
+            }
             if (!setNextElement(getNextElementInBlock())) {
                 mPosts.add(mPost);
                 mPost = new WDItemSmall();
                 setNextElement(new PostBlock());
             }
-//            Utils.log(String.format("URI: %s, LocalName: %s, qName: %s", uri, localName, qName));
         } else if (getCurrentBlock() != null && getCurrentBlock().checkSameTag(localName)) {
                 getCurrentBlock().increaseSameTagCounter();
         }
@@ -76,11 +102,15 @@ public class WDHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
+        if (mObtainText) {
+            mObtainText = false;
+            mElement.setTagContent(getTagContent());
+            mElement.provideDataTo(mPost);
+            Utils.log("Character [" + mTagContent.toString() + "]");
+        }
         if (getCurrentBlock() != null && getCurrentBlock().checkSameTag(localName)) {
             if (!getCurrentBlock().canClose()) {
                 getCurrentBlock().decreaseSameTagCounter();
-            } else {
-                Utils.log("Block " + getCurrentBlock().getTag() + " is closed");
             }
         }
     }

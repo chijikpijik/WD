@@ -1,5 +1,6 @@
 package com.example.start.data.abstracts;
 
+import com.example.start.data.objects.Attribute;
 import com.example.start.object.abstracts.AbsWDItem;
 import org.xml.sax.Attributes;
 
@@ -28,11 +29,14 @@ public interface IElement {
 
     public void setAttributes(Attributes attributes);
 
+    public void setTagContent(String string);
+
     public void provideDataTo(AbsWDItem item);
+
+    public boolean isTagContentRelated();
 
     public ElementType getElementType();
 
     public boolean check(String tag, Attributes attributes);
-
 
  }

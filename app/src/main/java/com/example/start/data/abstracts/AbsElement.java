@@ -11,6 +11,7 @@ public abstract class AbsElement implements IElement {
 
     protected List<Attribute> mAppropriateAttributes = new ArrayList<Attribute>();
     protected Attributes mAttributes;
+    protected String mTagContent;
 
     protected void addAppropriateAttribute(Attribute attribute) {
         mAppropriateAttributes.add(attribute);
@@ -25,6 +26,15 @@ public abstract class AbsElement implements IElement {
     @Override
     public Attributes getAttributes() {
         return mAttributes;
+    }
+
+    @Override
+    public void setTagContent(String content) {
+        mTagContent = content;
+    }
+
+    public String getTagContent() {
+        return mTagContent;
     }
 
     @Override
@@ -53,5 +63,10 @@ public abstract class AbsElement implements IElement {
     @Override
     public ElementType getElementType() {
         return ElementType.ELEMENT;
+    }
+
+    @Override
+    public boolean isTagContentRelated() {
+        return false;
     }
 }

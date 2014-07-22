@@ -22,6 +22,11 @@ public class BRateElement extends AbsElement {
 
     @Override
     public void provideDataTo(AbsWDItem item) {
+        item.setRate(getTagContent());
+    }
 
+    @Override
+    public boolean isTagContentRelated() {
+        return true;
     }
 }

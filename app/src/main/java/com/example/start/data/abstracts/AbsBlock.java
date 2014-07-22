@@ -57,5 +57,4 @@ public abstract class AbsBlock extends AbsElement{
             mSameTagsInsideCounter--;
         }
     }
-
 }
