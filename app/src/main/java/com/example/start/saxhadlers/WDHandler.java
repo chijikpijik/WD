@@ -67,16 +67,20 @@ public class WDHandler extends DefaultHandler {
         return true;
     }
 
+    private void useNextElement() {
+        if (!setNextElement(getNextElementInBlock())) {
+            mPosts.add(mPost);
+            mPost = new WDItemSmall();
+            setNextElement(new PostBlock());
+        }
+    }
+
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         if (mObtainText) {
             mTagContent = new StringBuilder();
-//            for (char aCh : ch) {
-//                if (!Character.isISOControl(aCh)) {
             mTagContent.append(ch, start, length);
-//                }
-//            }
         }
     }
 
@@ -89,11 +93,7 @@ public class WDHandler extends DefaultHandler {
                 mObtainText = true;
             } else {
                 mElement.provideDataTo(mPost);//TODO: Do not forget to implement
-            }
-            if (!setNextElement(getNextElementInBlock())) {
-                mPosts.add(mPost);
-                mPost = new WDItemSmall();
-                setNextElement(new PostBlock());
+                useNextElement();
             }
         } else if (getCurrentBlock() != null && getCurrentBlock().checkSameTag(localName)) {
                 getCurrentBlock().increaseSameTagCounter();
@@ -105,8 +105,8 @@ public class WDHandler extends DefaultHandler {
         if (mObtainText) {
             mObtainText = false;
             mElement.setTagContent(getTagContent());
-            mElement.provideDataTo(mPost);
-            Utils.log("Character [" + mTagContent.toString() + "]");
+            mElement.provideDataTo(mPost);// TODO:Хуйня, провайдит следующий элемен
+            useNextElement();
         }
         if (getCurrentBlock() != null && getCurrentBlock().checkSameTag(localName)) {
             if (!getCurrentBlock().canClose()) {
@@ -114,4 +114,5 @@ public class WDHandler extends DefaultHandler {
             }
         }
     }
+
 }

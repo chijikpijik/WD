@@ -10,6 +10,10 @@ public abstract class AbsWDItem {
     private String mDataType;
 
     public AbsWDItem() {
+        mTitle = "";
+        mRate = "";
+        mDataType = "";
+
     }
 
     public void setDataType(String type) {
@@ -38,5 +42,15 @@ public abstract class AbsWDItem {
 
     public Uri getImageUri() {
         return mImageUri;
+    }
+
+    @Override
+    public String toString() {
+        return "AbsWDItem{" +
+                "mTitle='" + mTitle + '\'' +
+                ", mRate='" + mRate + '\'' +
+                ", mImageUri=" + (mImageUri != null ? mImageUri.toString() : "") +
+                ", mDataType='" + mDataType + '\'' +
+                '}';
     }
 }
