@@ -1,5 +1,6 @@
 package com.example.start.net.converter;
 
+import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.saxhadlers.WDHandler;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
@@ -21,7 +22,7 @@ import java.util.List;
  */
 public class WDConverter {
 
-    public static List fromBody(TypedInput body) {
+    public static List<AbsWDItem> fromBody(TypedInput body) {
         XMLReader xmlReader = null;
         try {
             xmlReader = XMLReaderFactory.createXMLReader("org.ccil.cowan.tagsoup.Parser");
@@ -42,7 +43,6 @@ public class WDConverter {
         } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-        return new ArrayList();
-//        return ((WDHandler)liHandler).getBlockList();
+       return ((WDHandler)liHandler).getWDModel();
     }
 }

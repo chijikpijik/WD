@@ -32,5 +32,6 @@ public class PostBlock extends AbsBlock {
         addAppropriateAttribute(new Attribute(ATTR_DATA_LINK, ""));
         mElements.add(new NewsRateBlock());
         mElements.add(new NewsImageBlock());
+        mElements.add(new NewsTextBlock());
     }
 }

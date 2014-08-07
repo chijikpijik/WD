@@ -1,5 +1,6 @@
 package com.example.start.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,22 +11,22 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.example.start.net.converter.WDConverter;
 import com.example.start.object.WDItemSmall;
-import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.R;
 import com.example.start.adapters.WDListAdapter;
+import com.example.start.object.abstracts.AbsWDItem;
 import retrofit.mime.TypedInput;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class FaceFragment extends Fragment {
 
-    private List<WDItemSmall> mItems = new ArrayList<WDItemSmall>();
+    private List<AbsWDItem> mItems = new ArrayList<AbsWDItem>();
 
     private ListAdapter mAdapter;
 
@@ -63,38 +64,30 @@ public class FaceFragment extends Fragment {
 //            public void failure(RetrofitError error) {
 //            }
 //        });
-//        fillItemsData(
-            WDConverter.fromBody(new TypedInput() {
-                @Override
-                public String mimeType() {
-                    return "xml";
-                }
+        fillListModel(
+                WDConverter.fromBody(new TypedInput() {
+                    @Override
+                    public String mimeType() {
+                        return "html";
+                    }
 
-                @Override
-                public long length() {
-                    return 0;
-                }
+                    @Override
+                    public long length() {
+                        return 0;
+                    }
 
-                @Override
-                public InputStream in() throws IOException {
-                    return new FileInputStream(new File("/sdcard/", "test.html"));
-                }
-        });
-//        );
+                    @Override
+                    public InputStream in() throws IOException {
+                        return new FileInputStream(new File("/sdcard/", "test.html"));
+                    }
+                }));
     }
 
-//    public void fillItemsData(List<IBlock> blocks) {
-//        Iterator<IBlock> i = blocks.iterator();
-//        Integer pos = 0;
-//        for (; i.hasNext(); ) {
-//            AbsWDItem item = new WDItemSmall(pos, getActivity());
-//            IBlock block = i.next();
-//            block.fillItem(item);
-//            mItems.add((WDItemSmall) item);
-//            pos++;
-//        }
-//        updateList();
-//    }
+    public void fillListModel(List<AbsWDItem> items) {
+        mItems.clear();
+        mItems.addAll(items);
+        updateList();
+    }
 
     private void updateList() {
         ((WDListAdapter) mAdapter).notifyDataSetChanged();

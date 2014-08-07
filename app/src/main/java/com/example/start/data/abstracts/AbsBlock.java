@@ -1,5 +1,7 @@
 package com.example.start.data.abstracts;
 
+import org.xml.sax.Attributes;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -12,13 +14,20 @@ public abstract class AbsBlock extends AbsElement{
     protected List<IElement> mElements;
     ListIterator<IElement> i;
     private short mSameTagsInsideCounter;
-
+    protected boolean mBlockFinished;
+    protected boolean mCanBeFinished;
 
     protected AbsBlock() {
+        setBlockFinished(false);
+        mCanBeFinished = false;
         mElements = new ArrayList<IElement>();
         initBlock();
         i = mElements.listIterator();
         mSameTagsInsideCounter = 0;
+    }
+
+    protected void setBlockFinished(boolean finish) {
+        mBlockFinished = finish;
     }
 
     public IElement nextElement() {
@@ -29,8 +38,18 @@ public abstract class AbsBlock extends AbsElement{
         }
     }
 
-    public void terminateBlock() {
+    public void finishBlock() {
         mSameTagsInsideCounter = 0;//TODO:Странная хуйня, подумать на досуге
+        setBlockFinished(true);
+    }
+
+    @Override
+    public boolean check(String tag, Attributes attributes) {
+        boolean check = super.check(tag, attributes);
+        if (check) {
+            mCanBeFinished = true;
+        }
+        return check;
     }
 
     @Override
@@ -40,8 +59,8 @@ public abstract class AbsBlock extends AbsElement{
 
     public abstract void initBlock();
 
-    public boolean canClose() {
-        return mSameTagsInsideCounter == 0;
+    public boolean canFinish() {
+        return mSameTagsInsideCounter == 0 && mCanBeFinished;
     }
 
     public boolean checkSameTag(String tagName) {

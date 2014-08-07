@@ -4,7 +4,14 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:padding="@dimen/paddingMedium">
+              android:padding="@dimen/paddingMedium" >
+
+    <TextView
+            android:id="@+id/itemRate"
+            style="@style/rateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
 
     <ImageView
         android:id="@+id/itemImage"
@@ -24,13 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"/>
-
-        <TextView
-                android:id="@+id/itemRate"
-                style="@style/descriptionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 

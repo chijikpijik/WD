@@ -4,8 +4,8 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="descriptionText">
-        <item name="android:textSize">10sp</item>
+    <style name="rateText">
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>

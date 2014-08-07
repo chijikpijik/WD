@@ -3,6 +3,7 @@ package com.example.start.data.elements;
 import com.example.start.data.abstracts.AbsElement;
 import com.example.start.data.objects.Attribute;
 import com.example.start.object.abstracts.AbsWDItem;
+import com.example.start.utils.Utils;
 import org.xml.sax.Attributes;
 
 /**
@@ -21,7 +22,12 @@ public class ATagElement extends AbsElement {
     }
 
     @Override
-    public void provideDataTo(AbsWDItem item) {
+    public boolean isTagContentRelated() {
+        return true;
+    }
 
+    @Override
+    public void provideDataTo(AbsWDItem item) {
+        Utils.log("Tag: " + getTagContent());
     }
 }

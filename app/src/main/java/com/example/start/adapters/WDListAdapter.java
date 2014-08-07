@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.start.R;
-import com.example.start.net.ImageAssigner;
 import com.example.start.object.WDItemSmall;
 import com.squareup.picasso.Picasso;
 
@@ -43,10 +42,8 @@ public class WDListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null)
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_small, parent, false);
-        ImageAssigner loader;
         ((TextView)convertView.findViewById(R.id.itemTitle)).setText(getItem(position).getTitle());
-//        ((TextView)convertView.findViewById(R.id.itemRate)).setText(
-//                String.format("Pos in adapter: %s, Pos from Item: %s", position, getItem(position).getPosition()));
+        ((TextView)convertView.findViewById(R.id.itemRate)).setText(getItem(position).getRate());
         ImageView imageView = (ImageView) convertView.findViewById(R.id.itemImage);
         Picasso.with(mContext).load(getItem(position).getImageUri()).into(imageView);
         return convertView;
