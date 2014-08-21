@@ -39,11 +39,13 @@ public class WDHandler extends DefaultHandler {
     private IElement getNextElementInBlock() {
         if (!mBlocks.isEmpty()) {
             IElement element = mBlocks.peekFirst().nextElement();
-            while (!mBlocks.isEmpty() && element == null) {
+            while (element == null) {
                 mBlocks.removeFirst().finishBlock();
+                if (mBlocks.isEmpty()) {
+                    return null;
+                }
                 element = mBlocks.peekFirst().nextElement();
             }
-//            Utils.log(String.format("Next Element is: %s", element != null ? element.getTag() : "null"));
             return element;
         }
         return null;

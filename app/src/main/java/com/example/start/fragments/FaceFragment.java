@@ -9,11 +9,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import com.example.start.net.WDService;
 import com.example.start.net.converter.WDConverter;
 import com.example.start.object.WDItemSmall;
 import com.example.start.R;
 import com.example.start.adapters.WDListAdapter;
 import com.example.start.object.abstracts.AbsWDItem;
+import com.example.start.saxhadlers.WDHandler;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 import retrofit.mime.TypedInput;
 
 import java.io.File;
@@ -50,37 +56,22 @@ public class FaceFragment extends Fragment {
     }
 
     private void startDownload() {
-//        RestAdapter restAdapter = new RestAdapter.Builder()
-//                .setEndpoint("http://webdiscover.ru")
-//                .build();
-//        WDService wdService = restAdapter.create(WDService.class);
-//         wdService.getBody(new Callback<Response>() {
-//            @Override
-//            public void success(Response response, Response response2) {
-//                fillItemsData(WDConverter.fromBody(response.getBody()));
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//            }
-//        });
-        fillListModel(
-                WDConverter.fromBody(new TypedInput() {
-                    @Override
-                    public String mimeType() {
-                        return "html";
-                    }
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setConverter(new WDConverter())
+                .setEndpoint("http://webdiscover.ru")
+                .build();
+        WDService wdService = restAdapter.create(WDService.class);
+         wdService.getMainPageHandler(new Callback<WDHandler>() {
+             @Override
+             public void success(WDHandler wdHandler, Response response) {
+                fillListModel(wdHandler.getWDModel());
+             }
 
-                    @Override
-                    public long length() {
-                        return 0;
-                    }
+             @Override
+             public void failure(RetrofitError error) {
 
-                    @Override
-                    public InputStream in() throws IOException {
-                        return new FileInputStream(new File("/sdcard/", "test.html"));
-                    }
-                }));
+             }
+         });
     }
 
     public void fillListModel(List<AbsWDItem> items) {

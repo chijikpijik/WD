@@ -1,5 +1,6 @@
 package com.example.start.net;
 
+import com.example.start.saxhadlers.WDHandler;
 import com.squareup.picasso.Downloader;
 import retrofit.Callback;
 import retrofit.client.Response;
@@ -11,5 +12,5 @@ import retrofit.http.GET;
  */
 public interface WDService {
     @GET("/")
-    void getBody(Callback<Response> callback);
+    void getMainPageHandler(Callback<WDHandler> callback);
 }
