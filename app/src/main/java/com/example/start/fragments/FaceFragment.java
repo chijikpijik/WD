@@ -47,11 +47,12 @@ public class FaceFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startDownload();
-//                v.setVisibility(View.GONE);
+                v.setVisibility(View.GONE);
             }
         });
         mAdapter = new WDListAdapter(getActivity(), mItems);
         ((ListView) v.findViewById(R.id.lstMain)).setAdapter(mAdapter);
+        ((ListView) v.findViewById(R.id.lstMain)).setDivider(null);
         return v;
     }
 

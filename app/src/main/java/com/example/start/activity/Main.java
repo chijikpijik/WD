@@ -27,7 +27,7 @@ public class Main extends CoreActivity {
         drawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
-                R.drawable.abc_tab_selected_pressed_holo,
+                R.drawable.abc_ic_go,
                 R.string.open_nav,
                 R.string.close_nav){
             @Override

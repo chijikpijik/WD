@@ -41,9 +41,9 @@ public class WDListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null)
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_small, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.main_list_item_big, parent, false);
         ((TextView)convertView.findViewById(R.id.itemTitle)).setText(getItem(position).getTitle());
-        ((TextView)convertView.findViewById(R.id.itemRate)).setText(getItem(position).getRate());
+//        ((TextView)convertView.findViewById(R.id.itemRate)).setText(getItem(position).getRate());
         ImageView imageView = (ImageView) convertView.findViewById(R.id.itemImage);
         Picasso.with(mContext).load(getItem(position).getImageUri()).into(imageView);
         return convertView;
