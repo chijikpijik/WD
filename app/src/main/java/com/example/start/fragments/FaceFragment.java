@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -16,11 +17,15 @@ import com.example.start.R;
 import com.example.start.adapters.WDListAdapter;
 import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.saxhadlers.WDHandler;
+import com.example.start.utils.Utils;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.TypedInput;
+import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,9 +37,9 @@ import java.util.List;
 
 public class FaceFragment extends Fragment {
 
-    private List<AbsWDItem> mItems = new ArrayList<AbsWDItem>();
+    private List<AbsWDItem> mItems;
 
-    private ListAdapter mAdapter;
+    private WDListAdapter mAdapter;
 
     public static FaceFragment newInstance() {
         return new FaceFragment();
@@ -50,7 +55,7 @@ public class FaceFragment extends Fragment {
                 v.setVisibility(View.GONE);
             }
         });
-        mAdapter = new WDListAdapter(getActivity(), mItems);
+        mAdapter = new WDListAdapter(getActivity());
         ((ListView) v.findViewById(R.id.lstMain)).setAdapter(mAdapter);
         ((ListView) v.findViewById(R.id.lstMain)).setDivider(null);
         return v;
@@ -76,12 +81,14 @@ public class FaceFragment extends Fragment {
     }
 
     public void fillListModel(List<AbsWDItem> items) {
-        mItems.clear();
+        mItems = new ArrayList<AbsWDItem>();
         mItems.addAll(items);
+        mAdapter.setItems(items);
         updateList();
     }
 
     private void updateList() {
         ((WDListAdapter) mAdapter).notifyDataSetChanged();
     }
+
 }

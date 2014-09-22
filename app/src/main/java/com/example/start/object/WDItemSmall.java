@@ -12,11 +12,6 @@ public class WDItemSmall extends AbsWDItem {
         super();
     }
 
-    public WDItemSmall(int position, Context context) {
-        mPosition = position;
-        Utils.log(String.format("ITEM INIT pos: %s", position));
-    }
-
     public int getPosition() {
         return mPosition;
     }

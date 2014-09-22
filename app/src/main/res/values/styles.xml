@@ -2,10 +2,29 @@
 <resources>
     <style name="titleText">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:capitalize">words</item>
     </style>
 
     <style name="rateText">
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="detailsBtnStyle">
+        <item name="android:background">@drawable/details_button_shape</item>
+        <item name="android:padding">@dimen/detailsBtnPadding</item>
+        <item name="android:layout_margin">@dimen/detailsBtnMargin</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="WDTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarStyle">@style/WDActionBar</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="WDActionBar"
+           parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="backgroundSplit">@color/mainListShadow</item>
+        <item name="background">@color/mainListBG</item>
+    </style>
 </resources>

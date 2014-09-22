@@ -4,5 +4,7 @@
     <dimen name="paddingMedium">12dip</dimen>
     <dimen name="paddingBig">36dip</dimen>
     <dimen name="mainListItemHeight">150dip</dimen>
-
+    <dimen name="shadowHeight">2dip</dimen>
+    <dimen name="detailsBtnPadding">0dp</dimen>
+    <dimen name="detailsBtnMargin">1dp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/listItemContainer"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -19,8 +20,8 @@
                    android:scaleType="centerCrop" />
 
         <RelativeLayout
-                android:background="@color/mainListBG"
-                android:alpha="0.5"
+                android:id="@+id/postDetailsContainer"
+                android:background="@color/mainListBGAlpha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/paddingSmall"
@@ -28,17 +29,62 @@
                 android:layout_alignParentTop="true">
 
             <TextView
-                    android:id="@+id/itemTitle"
+                    android:id="@+id/title"
                     style="@style/titleText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Test Title"
-                    />
+                    android:visibility="gone"/>
 
+            <TextView
+                    android:id="@+id/rate"
+                    style="@style/titleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:visibility="gone"/>
+
+            <TextView
+                    android:id="@+id/hashTags"
+                    style="@style/titleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:visibility="gone"/>
         </RelativeLayout>
 
+        <LinearLayout
+                android:id="@+id/postDetailsButtonContainer"
+                android:layout_below="@id/postDetailsContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <Button
+                    android:id="@+id/hashTagsButton"
+                    style="@style/detailsBtnStyle"
+                    android:layout_width="30dip"
+                    android:text="#"
+                    android:layout_height="30dip"/>
+
+            <Button
+                    android:id="@+id/rateButton"
+                    android:text="R"
+                    style="@style/detailsBtnStyle"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"/>
+
+
+            <Button
+                    android:id="@+id/userButton"
+                    android:text="U"
+                    style="@style/detailsBtnStyle"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"/>
+
+        </LinearLayout>
+
         <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="@dimen/paddingSmall"
+                        android:layout_height="@dimen/shadowHeight"
                         android:background="@color/mainListShadow"
                         android:layout_alignParentBottom="true"/>
 

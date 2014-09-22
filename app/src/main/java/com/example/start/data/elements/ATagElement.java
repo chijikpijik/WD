@@ -28,6 +28,6 @@ public class ATagElement extends AbsElement {
 
     @Override
     public void provideDataTo(AbsWDItem item) {
-        Utils.log("Tag: " + getTagContent());
+//        Utils.log("Tag: " + getTagContent());
     }
 }

@@ -5,5 +5,6 @@
     <color name="lightBlue">#ffcfccff</color>
     <color name="blue">#0099cc</color>
     <color name="mainListBG">#FFD24F</color>
+    <color name="mainListBGAlpha">#70FFD24F</color>
     <color name="mainListShadow">#57481B</color>
 </resources>
