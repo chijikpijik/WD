@@ -13,6 +13,10 @@ public abstract class AbsElement implements IElement {
     protected Attributes mAttributes;
     protected String mTagContent;
 
+    /**
+    *
+    * @param attribute If value is empty, just the name of attribute is valuable
+    */
     protected void addAppropriateAttribute(Attribute attribute) {
         mAppropriateAttributes.add(attribute);
     }
@@ -21,7 +25,6 @@ public abstract class AbsElement implements IElement {
     public List getAttributesForMatch() {
         return mAppropriateAttributes;
     }
-
 
     @Override
     public Attributes getAttributes() {
@@ -33,8 +36,9 @@ public abstract class AbsElement implements IElement {
         mTagContent = content;
     }
 
+    @Override
     public String getTagContent() {
-        return mTagContent;
+        return mTagContent != null ? mTagContent : "";
     }
 
     @Override

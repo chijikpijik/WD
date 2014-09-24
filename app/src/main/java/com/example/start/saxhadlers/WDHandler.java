@@ -5,6 +5,7 @@ import com.example.start.data.abstracts.IElement;
 import com.example.start.data.elements.blocks.PostBlock;
 import com.example.start.object.WDItemSmall;
 import com.example.start.object.abstracts.AbsWDItem;
+import com.example.start.utils.Utils;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -24,7 +25,7 @@ public class WDHandler extends DefaultHandler {
         super();
         mPosts = new ArrayList();
         mBlocks = new LinkedList<AbsBlock>();
-        useNextElement();
+        moveToNextElement();
         mObtainText = false;
     }
 
@@ -51,6 +52,11 @@ public class WDHandler extends DefaultHandler {
         return null;
     }
 
+    /**
+     * Sets next element
+     * @param element
+     * @return false if element is null
+     */
     private boolean setNextElement(IElement element) {
         if (element == null)
             return false;
@@ -65,7 +71,7 @@ public class WDHandler extends DefaultHandler {
         return true;
     }
 
-    private void useNextElement() {
+    private void moveToNextElement() {
         if (!setNextElement(getNextElementInBlock())) {
             mPost = new WDItemSmall();
             setNextElement(new PostBlock());
@@ -85,13 +91,14 @@ public class WDHandler extends DefaultHandler {
     @Override
     public void startElement (String uri, String localName, String qName, Attributes attributes) throws SAXException
     {
+        Utils.log(String.format("Tag: %s", localName));
         if (mElement.check(localName, attributes)) {
             mElement.setAttributes(attributes);
             if (mElement.isTagContentRelated()) {
                 mObtainText = true;
             } else {
                 mElement.provideDataTo(mPost);
-                useNextElement();
+                moveToNextElement();
             }
         } else if (getCurrentBlock() != null && getCurrentBlock().checkSameTag(localName)) {
                 getCurrentBlock().increaseSameTagCounter();
@@ -105,13 +112,14 @@ public class WDHandler extends DefaultHandler {
                 getCurrentBlock().decreaseSameTagCounter();
             } else {
                 getCurrentBlock().finishBlock();
+                moveToNextElement();
             }
         }
         if (mObtainText) {
             mObtainText = false;
             mElement.setTagContent(getTagContent());
             mElement.provideDataTo(mPost);
-            useNextElement();
+            moveToNextElement();
         }
     }
 

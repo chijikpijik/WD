@@ -17,14 +17,21 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="actionBarTitleStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="WDTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="android:actionBarStyle">@style/WDActionBar</item>
         <item name="actionBarStyle">@style/WDActionBar</item>
     </style>
 
     <!-- ActionBar styles -->
     <style name="WDActionBar"
            parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
-        <item name="backgroundSplit">@color/mainListShadow</item>
+        <item name="android:background">@color/mainListBG</item>
+        <item name="android:titleTextStyle">@style/actionBarTitleStyle</item>
         <item name="background">@color/mainListBG</item>
     </style>
 </resources>

@@ -1,37 +1,23 @@
 package com.example.start.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.example.start.net.WDService;
 import com.example.start.net.converter.WDConverter;
-import com.example.start.object.WDItemSmall;
 import com.example.start.R;
 import com.example.start.adapters.WDListAdapter;
 import com.example.start.object.abstracts.AbsWDItem;
 import com.example.start.saxhadlers.WDHandler;
-import com.example.start.utils.Utils;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import retrofit.mime.TypedInput;
-import rx.Observable;
-import rx.functions.Action1;
-import rx.functions.Func1;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +37,7 @@ public class FaceFragment extends Fragment {
         ((Button) v.findViewById(R.id.btnStartDownload)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startDownload();
+                download();
                 v.setVisibility(View.GONE);
             }
         });
@@ -61,7 +47,7 @@ public class FaceFragment extends Fragment {
         return v;
     }
 
-    private void startDownload() {
+    private void download() {
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setConverter(new WDConverter())
                 .setEndpoint("http://webdiscover.ru")

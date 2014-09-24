@@ -119,6 +119,7 @@ public class WDListAdapter extends BaseAdapter {
         });
         viewHolder.mTitle.setText(getItem(position).getTitle());
         viewHolder.mRate.setText(getItem(position).getRate());
+        viewHolder.mHashTags.setText(getItem(position).toStringHashTags());
         showDetail(mDetailsVisibilityState.get(position), viewHolder);
         Picasso.with(mContext).load(getItem(position).getImageUri()).into(viewHolder.mImage);
         return v;

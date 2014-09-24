@@ -9,7 +9,7 @@ import java.util.ListIterator;
 /**
  * Created by akarpov on 6/14/14.
  */
-public abstract class AbsBlock extends AbsElement{
+public abstract class AbsBlock extends AbsElement {
 
     protected List<IElement> mElements;
     ListIterator<IElement> i;

@@ -1,5 +1,6 @@
 package com.example.start.data.elements.blocks;
 
+import android.net.Uri;
 import com.example.start.data.abstracts.AbsBlock;
 import com.example.start.data.elements.blocks.NewsImageBlock;
 import com.example.start.data.elements.blocks.NewsRateBlock;
@@ -22,13 +23,14 @@ public class PostBlock extends AbsBlock {
 
     @Override
     public void provideDataTo(AbsWDItem item) {
-
+        item.setDataType(getAttributes().getValue(ATTR_DATA_TYPE));
+        item.setImageUri(Uri.parse(getAttributes().getValue(ATTR_DATA_LINK)));
     }
 
     @Override
     public void initBlock() {
         addAppropriateAttribute(new Attribute(ATTR_DATA_ID, ""));
-        addAppropriateAttribute(new Attribute(ATTR_DATA_TYPE, ""));
+        addAppropriateAttribute(new Attribute(ATTR_DATA_TYPE, "1"));
         addAppropriateAttribute(new Attribute(ATTR_DATA_LINK, ""));
         mElements.add(new NewsRateBlock());
         mElements.add(new NewsImageBlock());

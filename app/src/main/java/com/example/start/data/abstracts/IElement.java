@@ -31,6 +31,8 @@ public interface IElement {
 
     public void setTagContent(String string);
 
+    public String getTagContent();
+
     public void provideDataTo(AbsWDItem item);
 
     public boolean isTagContentRelated();
